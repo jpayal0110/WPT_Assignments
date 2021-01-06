@@ -1,0 +1,155 @@
+
+//Q1.WAP to illustrate implementation of functions in javascript.
+
+function myFun(p1, p2) //function created
+{
+  return p1 * p2;
+}
+myFun(2,4);//function is called
+
+//===============================================================================================================================================================================
+//Q2. WAP to illustrate the declaration of object, assignment of value and display it.
+
+var person = {
+  fName: "John",
+	lName: "Christopher",
+  age: 22,
+  eyeColor: "Blue"
+}; // obj declaration and define
+
+console.log(person); //display
+//person.fName;
+person["fName"]; //accessing obj
+
+//===============================================================================================================================================================================
+//Q3.WAP to illustrate declaration of array , assignment of value to an array and display it.
+var arr;
+arr=[10,"John",90,"Bob", 30, "Peter"];
+console.log(arr);
+
+//===============================================================================================================================================================================
+/*Q4. Write a javascript function named is_integer which checks if the passed argument is an integer.
+ You can use any mathematical operator or functions defined in the Math object. */
+ 
+//Method1 (using remainder)
+function in_integer(num)
+{
+  return num % 1 ===0;
+}
+in_integer(2.8);
+
+//Method2 (using Math function)
+function isInteger(x)
+{
+  return Math.round(x) ===x;
+}
+isInteger(2.5);
+
+//Method3
+
+function isInteger(x) {
+    return (x | 0) === x;
+}
+isInteger(2.3);
+
+//Method4
+function isInteger(x) {
+    return parseInt(x, 10) === x;
+}
+isInteger(2.3);
+
+//===============================================================================================================================================================================
+//Q5. Using the forEach function defined for an array, 
+//find the sum of the array of numbers. [function add_all(arr) {...}]
+
+function myFun(arr) // declaring fun
+{
+  var sum = 0;
+  for(var i in arr) //for each loop
+    {
+      sum = sum + arr[i];
+    }
+  return sum;
+}
+arr = [10, 20, 30, 40, 50];
+myFun(arr); //called the fun
+
+//===============================================================================================================================================================================
+//Q6. Write a JavaScript program to convert temperatures to and from celsius, fahrenheit.
+
+function toCelsius(fahrenheit)
+{
+  let Celsius = (5/9)* (fahrenheit - 32)
+  return Celsius;
+}
+toCelsius(23); //-5C
+
+function toFahrenheit(Celsius)
+{
+  let Fahrenheit = Celsius * 9/5 +32
+  return Fahrenheit;
+}
+toFahrenheit(23); // 73.4F
+
+//===============================================================================================================================================================================
+//Q7. 7.Write a factorial function that returns the factorial of a given number, n.
+
+//ITERATIVE
+function fact(n)
+{
+  let ans = 1;
+  if(n == 0 || n == 1)
+    {
+      return ans;
+    }
+  else
+    {
+      for(var i = n; i>=1; i--)
+        {
+          ans = ans*i;
+        }
+      return ans;
+    }
+}
+fact(10);
+
+//RECURSIVE
+function factorial(n){
+    //base case
+    if(n == 0 || n == 1){
+        return 1;
+    //recursive case
+    }else{
+        return n * factorial(n-1);
+    }
+}
+factorial(10);
+
+//===============================================================================================================================================================================
+/*Q8. Write a javascript function that converts a given amount of money into coins of denominations (1, 2, 5, 10 and 25). 
+[function convert_to_coins(amount) {...}]. 
+You may choose to print the coin denominations used on the console. E.g. convert_to_coins(87) should print 25 25 25 10 2. */
+
+function convert_to_coins(amount, coins)
+{
+  if(amount === 0)
+    {
+      return [];
+    }
+  else
+    {
+      if(amount >= coins[0])
+        {
+          left = (amount - coins[0]);
+          return [coins[0]].concat(convert_to_coins(left, coins));
+        }
+      else
+        {
+          coins.shift();
+          return convert_to_coins(amount, coins);
+        }
+    }
+}
+
+console.log(convert_to_coins(9,[25, 10, 5, 2,1]));
+
